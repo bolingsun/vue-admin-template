@@ -1,0 +1,13 @@
+.header {
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  // background-color: #222935;
+  background-color: #2b83f9;
+  background-image: linear-gradient(143deg, #1D42AB, #2173DC, #1E93FF);
+  color: #EEEEEE;
+  .header__img {
+    height: 30px;
+    vertical-align: middle;
+  }
+}

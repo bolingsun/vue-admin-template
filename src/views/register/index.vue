@@ -1,13 +1,12 @@
 <template>
   <div>
-    Home
+    注册页面
   </div>
 </template>
 
 <script>
 export default {
-  name: "home",
-  components: {},
-  methods: {}
+  name: "Register",
+  components: {}
 };
 </script>

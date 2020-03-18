@@ -14,7 +14,6 @@ router.beforeEach(async (to, from, next) => {
       /* 有token不是login页面的情况（正常的路由切换），每次页面刷新清空vuex的roleMenu后都会重新去拉取权限数据，保证是最新的权限数据*/
       const hasMenus =
         store.getters.addRoutes && store.getters.addRoutes.length > 0;
-      console.log(hasMenus);
       if (hasMenus) {
         next();
       } else {
@@ -26,7 +25,6 @@ router.beforeEach(async (to, from, next) => {
             "permission/GetRouters",
             asyncRouterMap
           );
-          console.log(accessRoutes);
           // 动态添加可访问路由表
           router.addRoutes(accessRoutes);
           // hack方法 确保addRoutes已完成

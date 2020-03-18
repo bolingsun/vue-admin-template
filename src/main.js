@@ -14,7 +14,11 @@ mockXHR();
 // 引入element-ui框架
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-Vue.use(ElementUI);
+Vue.use(ElementUI, {
+  size: "medium"
+});
+
+import "@/styles/index.scss"; // global css
 
 Vue.config.productionTip = false;
 

@@ -1,4 +1,5 @@
-import { asyncRoutes, constantRoutes } from "@/router";
+import { constantRoutes } from "@/router";
+import { asyncRouterMap } from "@/router/router.js";
 
 // Layout 是架构组件，不在后台返回，在文件里单独引入
 import Layout from "@/layout";
@@ -80,10 +81,11 @@ function filterAsyncRouter(menuList) {
         path: "/" + m.path,
         name: toCamel(m.path),
         component: Layout,
+        redirect: "/" + m.path + "/index",
         meta: { id: m.id, title: m.title, fullPath: "/" + m.path },
         children: [
           {
-            path: "",
+            path: "index",
             component: () => import("@/views/" + m.path + "/index"),
             meta: {
               menuHide: true,
@@ -98,6 +100,52 @@ function filterAsyncRouter(menuList) {
   let res = handleChildrenMenu(menuRouters, menuList);
   return res;
 }
+/**
+ * 根据路由列表及菜单数据生成最终的路由信息
+ * @param {Array} asyncRouterMap    -路由列表
+ * @param {Array} menuData          -菜单数据
+ */
+function generateRoutes(asyncRouterMap, menuData) {
+  // console.log(asyncRouterMap);
+  // console.log(menuData);
+  const accessedRouters = asyncRouterMap.filter(route => {
+    addRouterMeta(route, menuData);
+    if (route.children && route.children.length) {
+      route.children = generateRoutes(route.children, menuData);
+    }
+    return true;
+  });
+  return accessedRouters;
+}
+
+/**
+ * 如果与当前用户菜单匹配，则添加 route.meta元数据对象。
+ * @param {Array} route            -路由对象
+ * @param {Array} menuData         -菜单数据
+ */
+function addRouterMeta(route, menuData) {
+  menuData.find((menu, index, arr) => {
+    let isExist = menu.menuUrl.indexOf(route.path) > -1;
+    if (!isExist) {
+      if (menu.children && menu.children.length) {
+        isExist = addRouterMeta(route, menu.children);
+      }
+    } else {
+      if (!route.meta) {
+        route.meta = {};
+      }
+      route.meta.title = menu.menuName;
+      // route.meta.buttonList = menu.buttonList;
+      route.meta.id = menu.id;
+      if (menu.menuUrl.indexOf("?") > -1) {
+        route.meta.useFullPath = true;
+      } else {
+        route.meta.useFullPath = false;
+      }
+    }
+    return isExist;
+  });
+}
 
 const state = {
   routes: [],
@@ -111,6 +159,23 @@ const mutations = {
   }
 };
 
+// const actions = {
+//   // 登录后计算路由菜单（静态路由+动态路由筛选）
+// //   GetRouters({ commit }, MenuData) {
+// //     return new Promise(resolve => {
+// //       const accessedRoutes = generateRoutes(asyncRouterMap, MenuData);
+// //       let temp404 = {
+// //         path: "*",
+// //         redirect: "/404",
+// //         hidden: true
+// //       };
+// //       accessedRoutes.push(temp404);
+// //       console.log("aaa", accessedRoutes);
+// //       commit("SET_ROUTES", accessedRoutes);
+// //       resolve(accessedRoutes);
+// //     });
+// //   }
+// // };
 const actions = {
   // 登录后计算路由菜单（静态路由+动态路由筛选）
   GetRouters({ commit }, asyncRouterMap) {
@@ -122,12 +187,12 @@ const actions = {
       };
       const accessedRoutes = filterAsyncRouter(asyncRouterMap);
       accessedRoutes.push(temp404); // 路由最后添加匹配404
+      console.log("aaa", accessedRoutes);
       commit("SET_ROUTES", accessedRoutes);
       resolve(accessedRoutes);
     });
   }
 };
-
 export default {
   namespaced: true,
   state,

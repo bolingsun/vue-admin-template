@@ -1,13 +1,12 @@
 <template>
   <div>
-    Home
+    密码页面
   </div>
 </template>
 
 <script>
 export default {
-  name: "home",
-  components: {},
-  methods: {}
+  name: "PasswordSet",
+  components: {}
 };
 </script>

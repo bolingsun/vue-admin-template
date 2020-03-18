@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header></Header>
     Layout
     <router-view></router-view>
   </div>
@@ -7,9 +8,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Header from "@/components/Header";
 export default {
   name: "Layout",
-  components: {},
+  components: {
+    Header
+  },
   data() {
     return {
       drawer: false,

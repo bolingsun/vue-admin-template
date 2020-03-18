@@ -82,34 +82,59 @@ const tokens = {
 //     }
 //   ]
 // };
+// 第一个版本
 const menus = {
   "admin-token": [
     {
-      id: 39,
+      id: 1,
       title: "IT中心",
       path: "it",
       parent_id: null
     },
     {
-      id: 150,
+      id: 2,
       title: "IT资产",
       path: "asset",
-      parent_id: 39
+      parent_id: 1
     },
     {
-      id: 151,
+      id: 3,
       title: "资产管理",
       path: "edit",
-      parent_id: 150
+      parent_id: 2
     },
     {
-      id: 152,
+      id: 4,
       title: "时段统计",
       path: "time",
-      parent_id: 150
+      parent_id: 2
+    },
+    {
+      id: 5,
+      title: "系统设置",
+      path: "set",
+      parent_id: null
+    },
+    {
+      id: 6,
+      title: "密码设置",
+      path: "password-set",
+      parent_id: 5
     }
   ]
 };
+
+// // Leems 版本
+// const menus = {
+//   "admin-token": [
+//     {
+//       id: 39,
+//       menuName: "系统设置",
+//       menuUrl: "/set",
+//       parent_id: ""
+//     }
+//   ]
+// };
 export default [
   // user login
   {
