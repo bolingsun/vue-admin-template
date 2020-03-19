@@ -20,7 +20,8 @@ export const constantRoutes = [
     redirect: "/home",
     meta: {
       icon: "mdi-home",
-      title: "首页"
+      title: "首页",
+      fullPath: "/home"
     },
     children: [
       {
@@ -32,6 +33,7 @@ export const constantRoutes = [
   },
   {
     path: "/login",
+    hidden: true,
     component: () => import("@/views/Login.vue"),
     meta: {
       icon: "mdi-home",

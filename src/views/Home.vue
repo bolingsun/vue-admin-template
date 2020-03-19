@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     Home
   </div>
 </template>
@@ -11,3 +11,8 @@ export default {
   methods: {}
 };
 </script>
+<style scoped>
+.home {
+  background: #fff;
+}
+</style>

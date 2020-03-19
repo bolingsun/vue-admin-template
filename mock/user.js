@@ -120,6 +120,12 @@ const menus = {
       title: "密码设置",
       path: "password-set",
       parent_id: 5
+    },
+    {
+      id: 7,
+      title: "测试菜单",
+      path: "test",
+      parent_id: null
     }
   ]
 };

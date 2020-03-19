@@ -1,0 +1,9 @@
+.app-main-wraper {
+  margin-left: 200px;
+  background-color: #F8F8F9;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  // 下面这个是为了留出20px
+  padding: 20px;
+  box-sizing: border-box;
+}

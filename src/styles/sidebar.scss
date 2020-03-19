@@ -1,0 +1,17 @@
+.sidebar-wrapper {
+  // position: fixed;
+  // width: 200px;
+  // background-color: #ccc;
+  // top: 60px;
+  // left: 0;
+  // bottom: 0;
+  // overflow-y: auto;
+  position: absolute;
+  width: 200px;
+  background-color: #fff;
+  top: 60px;
+  bottom: 0;
+  overflow-y: auto; // y轴内容超出滚动条
+  overflow-x: hidden; // x轴滚动条隐藏
+  border-right: 1px solid #d7dde4;
+}

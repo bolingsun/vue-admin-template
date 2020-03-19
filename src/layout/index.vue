@@ -1,18 +1,22 @@
 <template>
-  <div>
+  <div style="height:100%;position:relative;overflow:auto;">
     <Header></Header>
-    Layout
-    <router-view></router-view>
+    <Sidebar></Sidebar>
+    <app-main></app-main>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import AppMain from "@/components/AppMain";
 export default {
   name: "Layout",
   components: {
-    Header
+    Header,
+    Sidebar,
+    AppMain
   },
   data() {
     return {
@@ -20,46 +24,10 @@ export default {
       defaultAvatar: require("../assets/avatar.png")
     };
   },
-  filters: {
-    roleFilter(role) {
-      if (role === "admin") {
-        return "管理员";
-      } else {
-        return "普通用户";
-      }
-    }
-  },
-  computed: {
-    ...mapGetters(["avatar", "name", "role", "permission_routes"]),
-    key() {
-      return this.$route.path;
-    },
-    infoShow() {
-      if (this.name) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  },
-  mounted() {
-    // console.log(this.permission_routes);
-  },
-  methods: {
-    // 退出登录
-    async handleLogOut() {
-      await this.$store.dispatch("user/logout");
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-      this.$message({
-        type: "success",
-        message: "退出成功"
-      });
-    }
-  }
-  // activated() {
-  // },
-  // deactivated() {
-  // }
+  filters: {},
+  computed: {},
+  mounted() {},
+  methods: {}
 };
 </script>
 <style lang="scss">

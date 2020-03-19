@@ -82,13 +82,17 @@ function filterAsyncRouter(menuList) {
         name: toCamel(m.path),
         component: Layout,
         redirect: "/" + m.path + "/index",
-        meta: { id: m.id, title: m.title, fullPath: "/" + m.path },
+        meta: {
+          id: m.id,
+          title: m.title,
+          fullPath: "/" + m.path
+        },
         children: [
           {
-            path: "index",
+            path: "",
+            hidden: true,
             component: () => import("@/views/" + m.path + "/index"),
             meta: {
-              menuHide: true,
               title: m.title
             }
           }
@@ -187,7 +191,6 @@ const actions = {
       };
       const accessedRoutes = filterAsyncRouter(asyncRouterMap);
       accessedRoutes.push(temp404); // 路由最后添加匹配404
-      console.log("aaa", accessedRoutes);
       commit("SET_ROUTES", accessedRoutes);
       resolve(accessedRoutes);
     });
