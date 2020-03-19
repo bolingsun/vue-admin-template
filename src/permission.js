@@ -25,6 +25,7 @@ router.beforeEach(async (to, from, next) => {
             "permission/GetRouters",
             asyncRouterMap
           );
+          console.log(accessRoutes);
           // 动态添加可访问路由表
           router.addRoutes(accessRoutes);
           // hack方法 确保addRoutes已完成

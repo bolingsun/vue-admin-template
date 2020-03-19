@@ -94,6 +94,7 @@ const actions = {
       commit("SET_NAME", "");
       commit("SET_AVATAR", "");
       commit("SET_ROLE", "");
+      commit("permission/SET_ADDROUTES", [], { root: true }); // 退出时清空动态菜单字段缓存,这里调用了permission模块的mutaction方法
       removeToken();
       resolve();
     });
@@ -103,6 +104,7 @@ const actions = {
   resetToken({ commit }) {
     return new Promise(resolve => {
       commit("SET_TOKEN", "");
+      commit("permission/SET_ADDROUTES", [], { root: true }); // 退出时清空动态菜单字段缓存,这里调用了permission模块的mutaction方法
       removeToken();
       resolve();
     });

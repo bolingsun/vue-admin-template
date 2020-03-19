@@ -169,8 +169,11 @@ const state = {
 };
 
 const mutations = {
+  SET_ADDROUTES: (state, accessedRoutes) => {
+    // 保存异步路由可访问的name值
+    state.addRoutes = accessedRoutes;
+  },
   SET_ROUTES: (state, routes) => {
-    state.addRoutes = routes;
     state.routes = constantRoutes.concat(routes);
   }
 };
@@ -204,6 +207,7 @@ const actions = {
       const accessedRoutes = filterAsyncRouter(asyncRouterMap);
       accessedRoutes.push(temp404); // 路由最后添加匹配404
       commit("SET_ROUTES", accessedRoutes);
+      commit("SET_ADDROUTES", accessedRoutes); // vuex中保存异步获取的路由表
       resolve(accessedRoutes);
     });
   }
