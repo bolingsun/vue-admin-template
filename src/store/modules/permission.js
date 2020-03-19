@@ -53,6 +53,13 @@ function handleChildrenMenu(menuRouters, menuList) {
         // 如果root根路由中有其他的子路由菜单，就将上一步添加的path未空的路由，删掉。
         if (r.children && r.children[0] && r.children[0].path === "") {
           r.children.shift();
+          // 修改root路由的redirect为第一个子菜单路径
+          r.redirect = r.path + "/" + m.path;
+        } else {
+          // 这是submenu,如果redirect没有设置的话，就讲redirect重定向到它的第一个子菜单
+          if (!r.redirect) {
+            r.redirect = r.path + "/" + m.path;
+          }
         }
         m.fullPath = r.meta.fullPath + "/" + m.path;
         let menu = {

@@ -22,6 +22,7 @@ export const constantRoutes = [
       title: "首页",
       fullPath: "/home"
     },
+    redirect: "/home",
     children: [
       {
         path: "home",
