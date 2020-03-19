@@ -17,7 +17,7 @@ import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI, {
   size: "medium"
 });
-
+import "@/assets/icons/iconfont.css";
 import "@/styles/index.scss"; // global css
 
 Vue.config.productionTip = false;

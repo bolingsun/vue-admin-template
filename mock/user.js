@@ -89,7 +89,8 @@ const menus = {
       id: 1,
       title: "IT中心",
       path: "it",
-      parent_id: null
+      parent_id: null,
+      icon: "icon-my-appstore"
     },
     {
       id: 2,
@@ -113,7 +114,8 @@ const menus = {
       id: 5,
       title: "系统设置",
       path: "set",
-      parent_id: null
+      parent_id: null,
+      icon: "icon-my-setting"
     },
     {
       id: 6,
@@ -125,7 +127,8 @@ const menus = {
       id: 7,
       title: "测试菜单",
       path: "test",
-      parent_id: null
+      parent_id: null,
+      icon: "icon-my-android-fill"
     }
   ]
 };

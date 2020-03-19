@@ -42,7 +42,7 @@ function toCamel(str) {
   }
   return str;
 }
-//定义一个递归方法
+//定义一个递归方法, 处理子路由菜单
 function handleChildrenMenu(menuRouters, menuList) {
   menuRouters.forEach(r => {
     menuList.forEach(m => {
@@ -85,7 +85,8 @@ function filterAsyncRouter(menuList) {
         meta: {
           id: m.id,
           title: m.title,
-          fullPath: "/" + m.path
+          fullPath: "/" + m.path,
+          icon: m.icon
         },
         children: [
           {

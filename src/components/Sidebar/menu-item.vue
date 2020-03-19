@@ -1,18 +1,25 @@
 <template>
   <div v-if="!item.hidden" class="menu-wrapper">
-    <!-- 这是xxx/index路由目录 -->
+    <!-- 这是xxx/index路由目录, 只有一级菜单时 -->
     <el-menu-item
       v-if="item.children && item.children.length === 1"
       :index="item.meta.fullPath"
     >
-      <span slot="title">?{{ item.meta.title }}</span>
+      <i class="iconfont" :class="item.meta.icon" style="margin-right:8px;"></i>
+      <span slot="title">{{ item.meta.title }}</span>
     </el-menu-item>
-    <!-- 这个是多级子菜单出口 -->
+    <!-- 这个是多级菜单下的子菜单出口 -->
     <el-menu-item v-else-if="!item.children" :index="item.meta.fullPath">
-      <span slot="title">*{{ item.meta.title }}</span>
+      <span slot="title">{{ item.meta.title }}</span>
     </el-menu-item>
+    <!-- 这是多级菜单submenu -->
     <el-submenu v-else :index="item.path">
       <template slot="title">
+        <i
+          class="iconfont"
+          :class="item.meta.icon"
+          style="margin-right:8px;"
+        ></i>
         <span slot="title">{{ item.meta.title }}</span>
       </template>
       <menu-item
