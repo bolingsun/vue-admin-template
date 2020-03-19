@@ -1,8 +1,9 @@
 <template>
   <div class="sidebar-wrapper">
-    <div>
-      <i class="iconfont icon-my-doubleright" @click="isCollapse = false"></i>
-      <i class="iconfont icon-my-doubleleft" @click="isCollapse = true"></i>
+    <div class="hamburger">
+      <el-divider>
+        <i class="iconfont" :class="styleObj" @click="toggleClick"></i>
+      </el-divider>
     </div>
     <!-- 方案一 -->
     <!-- <el-menu
@@ -16,14 +17,15 @@
         :key="route.path"
         :item="route"
       ></menu-item>
-    </el-menu> -->
+    </el-menu>-->
 
     <!-- 方案二 -->
     <el-menu
       mode="vertical"
       router
       :default-active="this.$route.path"
-      :collapse="isCollapse"
+      :collapse="!sidebar.opened"
+      :collapse-transition="false"
     >
       <sidebar-item
         v-for="route in permission_routes"
@@ -47,7 +49,7 @@
           <span slot="title">密码设置</span>
         </el-menu-item>
       </el-submenu>
-    </el-menu> -->
+    </el-menu>-->
   </div>
 </template>
 
@@ -66,7 +68,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["permission_routes"]),
+    ...mapGetters(["permission_routes", "sidebar"]),
     activeMenu() {
       const route = this.$route;
       const { meta, path } = route;
@@ -75,15 +77,30 @@ export default {
         return meta.activeMenu;
       }
       return path;
+    },
+    styleObj() {
+      if (!this.sidebar.opened) {
+        return "icon-my-doubleright";
+      } else {
+        return "icon-my-doubleleft";
+      }
     }
   },
   created() {
-    console.log(this.permission_routes);
+    // console.log(this.permission_routes);
+  },
+  methods: {
+    toggleClick() {
+      // this.isCollapse = !this.isCollapse;
+      this.$store.dispatch("app/toggleSideBar");
+    }
   }
 };
 </script>
-<style scoped>
-p {
-  text-align: center;
+<style lang="scss" scoped>
+.sidebar-wrapper {
+  .hamburger {
+    cursor: pointer;
+  }
 }
 </style>

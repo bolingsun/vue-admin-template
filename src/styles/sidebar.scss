@@ -33,3 +33,12 @@
     }
   }
 }
+
+.hideSidebar {
+  .sidebar-wrapper {
+    width: 54px;
+  }
+  .app-main-wraper {
+    margin-left: 54px;
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%;position:relative;overflow:auto;">
+  <div :class="classObj" style="height:100%;position:relative;overflow:auto;">
     <Header></Header>
     <Sidebar></Sidebar>
     <app-main></app-main>
@@ -25,7 +25,15 @@ export default {
     };
   },
   filters: {},
-  computed: {},
+  computed: {
+    ...mapGetters(["sidebar"]),
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened
+      };
+    }
+  },
   mounted() {},
   methods: {}
 };
