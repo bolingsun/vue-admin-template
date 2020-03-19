@@ -17,7 +17,6 @@ export const constantRoutes = [
   {
     path: "/",
     component: Layout,
-    redirect: "/home",
     meta: {
       icon: "icon-my-home",
       title: "首页",

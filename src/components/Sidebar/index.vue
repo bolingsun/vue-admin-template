@@ -1,18 +1,46 @@
 <template>
   <div class="sidebar-wrapper">
-    <el-menu mode="vertical" router :default-active="this.$route.path">
+    <div>
+      <i class="iconfont icon-my-doubleright" @click="isCollapse = false"></i>
+      <i class="iconfont icon-my-doubleleft" @click="isCollapse = true"></i>
+    </div>
+    <!-- 方案一 -->
+    <!-- <el-menu
+      mode="vertical"
+      router
+      :default-active="this.$route.path"
+      :collapse="isCollapse"
+    >
       <menu-item
         v-for="route in permission_routes"
         :key="route.path"
         :item="route"
       ></menu-item>
+    </el-menu> -->
+
+    <!-- 方案二 -->
+    <el-menu
+      mode="vertical"
+      router
+      :default-active="this.$route.path"
+      :collapse="isCollapse"
+    >
+      <sidebar-item
+        v-for="route in permission_routes"
+        :key="route.path"
+        :item="route"
+      ></sidebar-item>
     </el-menu>
-    <!-- <el-menu mode="vertical" router>
+
+    <!-- 写死的数据测试 -->
+    <!-- <el-menu mode="vertical" router :collapse="isCollapse">
       <el-menu-item index="/home">
+        <i class="iconfont icon-my-home" style="margin-right:8px;"></i>
         <span slot="title">首页</span>
       </el-menu-item>
       <el-submenu index="1">
         <template slot="title">
+          <i class="iconfont icon-my-setting" style="margin-right:8px;"></i>
           <span slot="title">系统设置</span>
         </template>
         <el-menu-item index="/set/password-set">
@@ -25,11 +53,17 @@
 
 <script>
 import { mapGetters } from "vuex";
-import MenuItem from "./menu-item";
+// import MenuItem from "./menu-item";
+import SidebarItem from "./SidebarItem";
 export default {
   name: "Sidebar",
   components: {
-    MenuItem
+    SidebarItem
+  },
+  data() {
+    return {
+      isCollapse: false
+    };
   },
   computed: {
     ...mapGetters(["permission_routes"]),
@@ -48,3 +82,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+p {
+  text-align: center;
+}
+</style>

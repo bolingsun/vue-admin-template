@@ -14,4 +14,22 @@
   overflow-y: auto; // y轴内容超出滚动条
   overflow-x: hidden; // x轴滚动条隐藏
   border-right: 1px solid #d7dde4;
+
+  /* 这个是fix解决折叠菜单时候，submenu下的title不隐藏的问题*/
+  .el-menu--collapse {
+    .el-submenu {
+      &>.el-submenu__title {
+        &>span {
+          height: 0;
+          width: 0;
+          overflow: hidden;
+          visibility: hidden;
+          display: inline-block;
+        }
+      }
+    }
+    .el-submenu__icon-arrow {
+      display: none;
+    }
+  }
 }

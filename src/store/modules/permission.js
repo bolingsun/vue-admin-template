@@ -50,6 +50,10 @@ function handleChildrenMenu(menuRouters, menuList) {
         if (!r.children) {
           r.children = [];
         }
+        // 如果root根路由中有其他的子路由菜单，就将上一步添加的path未空的路由，删掉。
+        if (r.children && r.children[0] && r.children[0].path === "") {
+          r.children.shift();
+        }
         m.fullPath = r.meta.fullPath + "/" + m.path;
         let menu = {
           path: m.path,
