@@ -50,8 +50,10 @@ function handleChildrenMenu(menuRouters, menuList) {
         if (!r.children) {
           r.children = [];
         }
-        // 如果root根路由中有其他的子路由菜单，就将上一步添加的path未空的路由，删掉。
-        if (r.children && r.children[0] && r.children[0].path === "") {
+        // 如果root根路由中有其他的子路由菜单，就将上一步添加的path为index的路由，删掉。
+        if (r.children && r.children[0] && r.children[0].path === "index") {
+          // 根路由有子路由的话，就需要重写根路由的meta标签内的fullpath属性,上一步的fallpath为xxx/index, 现在需要修改回xxx,去掉index
+          r.meta.fullPath = r.path;
           r.children.shift();
           // 修改root路由的redirect为第一个子菜单路径
           r.redirect = r.path + "/" + m.path;
@@ -96,12 +98,12 @@ function filterAsyncRouter(menuList) {
         meta: {
           id: m.id,
           title: m.title,
-          fullPath: "/" + m.path,
+          fullPath: "/" + m.path + "/index",
           icon: m.icon
         },
         children: [
           {
-            path: "",
+            path: "index",
             hidden: true,
             component: () => import("@/views/" + m.path + "/index"),
             meta: {
