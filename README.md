@@ -1,4 +1,4 @@
-# vue-blog-client
+# vue-admin-template
 
 ## Project setup
 ```
