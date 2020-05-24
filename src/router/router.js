@@ -1,29 +1,20 @@
 /**
  * 异步路由表
  */
-export const asyncRouterMap = [
-  {
-    path: "/layout",
-    component: resolve => require(["../layout"], resolve),
-    name: "Layout",
-    children: [
-      {
-        path: "/set",
-        component: resolve => require(["../views/set"], resolve)
-      },
-      {
-        path: "/test",
-        component: resolve => require(["../views/test"], resolve)
-      }
-    ]
-  },
-  {
-    path: "/register",
-    component: resolve => require(["../views/register"], resolve)
-  },
-  {
-    path: "*",
-    redirect: "/404",
-    hidden: true
-  }
-];
+import Layout from "@/layout";
+
+// 渲染一个空<router-view></router-view>路由出口
+const RouteView = {
+  name: 'RouteView',
+  render: (h) => h('router-view')
+}
+// 前端路由表
+export const constantRouterComponents = {
+  Layout: Layout,
+  RouteView: RouteView,
+  'Home': () => import("@/views/Home.vue"),
+  'Test': () => import("@/views/test/index.vue"),
+  'PasswordSet': () => import("@/views/set/password-set/index.vue"),
+  'Edit': () => import("@/views/it/asset/edit/index.vue"),
+  'Time': () => import("@/views/it/asset/time/index.vue")
+};

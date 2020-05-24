@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid>
+  <div>
     <h1 class="error-title">404</h1>
     <h3>{{ message }}</h3>
     <a href class="btn-rounded">返回首页</a>
-  </v-container>
+  </div>
 </template>
 
 <script>

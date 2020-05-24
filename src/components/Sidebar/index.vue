@@ -5,21 +5,6 @@
         <i class="iconfont" :class="styleObj" @click="toggleClick"></i>
       </el-divider>
     </div>
-    <!-- 方案一 -->
-    <!-- <el-menu
-      mode="vertical"
-      router
-      :default-active="this.$route.path"
-      :collapse="isCollapse"
-    >
-      <menu-item
-        v-for="route in permission_routes"
-        :key="route.path"
-        :item="route"
-      ></menu-item>
-    </el-menu>-->
-
-    <!-- 方案二 -->
     <el-menu
       mode="vertical"
       router
@@ -27,35 +12,13 @@
       :collapse="!sidebar.opened"
       :collapse-transition="false"
     >
-      <sidebar-item
-        v-for="route in permission_routes"
-        :key="route.path"
-        :item="route"
-      ></sidebar-item>
+      <sidebar-item v-for="route in menus" :key="route.path" :item="route"></sidebar-item>
     </el-menu>
-
-    <!-- 写死的数据测试 -->
-    <!-- <el-menu mode="vertical" router :collapse="isCollapse">
-      <el-menu-item index="/home">
-        <i class="iconfont icon-my-home" style="margin-right:8px;"></i>
-        <span slot="title">首页</span>
-      </el-menu-item>
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="iconfont icon-my-setting" style="margin-right:8px;"></i>
-          <span slot="title">系统设置</span>
-        </template>
-        <el-menu-item index="/set/password-set">
-          <span slot="title">密码设置</span>
-        </el-menu-item>
-      </el-submenu>
-    </el-menu>-->
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-// import MenuItem from "./menu-item";
 import SidebarItem from "./SidebarItem";
 export default {
   name: "Sidebar",
@@ -64,7 +27,8 @@ export default {
   },
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
+      menus: [] // base map 对应baiseLayout的路由表
     };
   },
   computed: {
@@ -87,11 +51,12 @@ export default {
     }
   },
   created() {
-    // console.log(this.permission_routes);
+    const routes = this.permission_routes.find(item => item.path === "/");
+    this.menus = (routes && routes.children) || [];
+    console.log("menus", this.menus);
   },
   methods: {
     toggleClick() {
-      // this.isCollapse = !this.isCollapse;
       this.$store.dispatch("app/toggleSideBar");
     }
   }
