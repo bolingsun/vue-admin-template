@@ -43,7 +43,7 @@ const actions = {
   },
 
   // 获取用户菜单
-  GetUserMenu({ commit, state }) {
+  GetUserMenu({ state }) {
     return new Promise((resolve, reject) => {
       getUserMenuData(state.token)
         .then(res => {

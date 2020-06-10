@@ -25,11 +25,6 @@ service.interceptors.request.use(
   },
   error => {
     console.log(error); // for debug
-    Message({
-      message: res.errMsg || "Error",
-      type: "error",
-      duration: 5 * 1000
-    });
     return Promise.reject(error);
   }
 );
