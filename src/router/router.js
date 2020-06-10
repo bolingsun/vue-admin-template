@@ -12,8 +12,6 @@ const RouteView = {
 export const constantRouterComponents = {
   Layout: Layout,
   RouteView: RouteView,
-  'Home': () => import("@/views/Home.vue"),
-  'Test': () => import("@/views/test/index.vue"),
   'PasswordSet': () => import("@/views/set/password-set/index.vue"),
   'Edit': () => import("@/views/it/asset/edit/index.vue"),
   'Time': () => import("@/views/it/asset/time/index.vue")

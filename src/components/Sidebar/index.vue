@@ -51,8 +51,16 @@ export default {
     }
   },
   created() {
-    const routes = this.permission_routes.find(item => item.path === "/");
-    this.menus = (routes && routes.children) || [];
+     // 旧方式，layout下的路由，需要全部放到服务端
+    // const routes = this.permission_routes.find(item => item.path === "/");
+    // this.menus = (routes && routes.children) || [];
+    // 新方式，静态路由和动态路由的两个layout,分开定义，然后在这里完成菜单合并，layout下的路由就不需要全部放到客户端了。
+    const routes = this.permission_routes.filter(item => item.path === "/");
+    routes.forEach(v => {
+      if (v.children) {
+        this.menus = this.menus.concat(v.children);
+      }
+    });
     console.log("menus", this.menus);
   },
   methods: {

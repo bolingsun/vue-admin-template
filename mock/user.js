@@ -6,25 +6,17 @@ const tokens = {
     token: "user-token"
   }
 };
-// 第一个版本
+// 动态路由返回的菜单数据
 const menus = {
   "admin-token": [
-    {
-      id: 1,
-      title: "首页",
-      path: "home",
-      name: 'Home',
-      parent_id: 0,
-      icon: "icon-my-home"
-    },
-    {
-      id: 2,
-      title: "测试菜单",
-      path: "test",
-      name: 'Test',
-      parent_id: 0,
-      icon: "icon-my-android-fill"
-    },
+    // {
+    //   id: 2,
+    //   title: "测试菜单",
+    //   path: "test",
+    //   name: 'Test',
+    //   parent_id: 0,
+    //   icon: "icon-my-android-fill"
+    // },
     {
       id: 3,
       title: "系统设置",

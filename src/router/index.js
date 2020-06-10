@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Layout from "@/layout";
 // import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
@@ -12,6 +13,30 @@ Vue.use(VueRouter);
  * hidden:true设置来显示隐藏菜单（设置为true，改路由不会显示在左侧菜单中）
  */
 export const constantRoutes = [
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/home',
+    children: [
+      {
+        path: 'home',
+        component: () => import("@/views/Home.vue"),
+        meta: {
+          icon: "icon-my-home",
+          title: "首页"
+        }
+      },
+      {
+        path: "/test",
+        component: () => import("@/views/test/index.vue"),
+        meta: {
+          icon: "icon-my-android-fill",
+          title: "测试"
+        }
+      }
+      // 未来其他的属于layout布局下的静态路由，都放在这里
+    ]
+  },
   {
     path: "/login",
     hidden: true,
